@@ -1,15 +1,23 @@
-Basic integration of web2py and AngularJS. Not well tested but it seems working...
+Basic integration of web2py and AngularJS. Not well tested but it seems to work...
 
 To install (Linux):
 (1) Download and unzip web2py 
     wget http://www.web2py.com/examples/static/web2py_src.zip
     unzip web2py_src.zip
 
-(2) Install javascript/css dependencies
+(2) Clone the repository
+    cd web2py/applications
+    git clone https://github.com/francescosalvadore/web2py_angularized.git web2py_angularized
+
+(3) Install javascript/css dependencies
     cd web2py/applications/web2py_angularized/static
     bower install
 
-(3) Start web2py and try!
+(4) Edit the site url in Python (db.py) and javascript (controller.js) files
+    cd web2py/applications/web2py_angularized
+    vi static/js/myangularjs/controllers.js  ==> edit the line with the url localhost:8001
+    vi models/db.py                          ==> edit the line with the url localhost:8001 
+
+(5) Start web2py and try!
     cd web2py
     python web2py.py
-
