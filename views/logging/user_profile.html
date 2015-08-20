@@ -1,0 +1,48 @@
+<div ng-if="!user.logged" class="row">
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="alert alert-danger alert-dismissible" role="alert">
+					<button type="button" class="close" ng-click="intro_type=''" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<span>
+						You must be logged in to access this page.<br/>
+						<a ui-sref="logging.user_login({redirect_page: 'pages.page6'})">Login</a>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-if="user.logged" class="row">
+ 	<div class="col-md-4">
+
+        <h2>Profile</h2>
+
+ 		<div ng-if="err_found" class="alert alert-danger">
+ 			<strong>Error!</strong> {{err_msg}}
+ 		</div>
+
+ 		<div class="form-group">
+ 			<label for="usernameid">Username</label>
+ 			<span id="usernameid" class="form-control" type="text" value="" ng-bind="pro_user['username']" style="background-color:#ccf;"></span>
+ 		</div>
+ 		<div class="form-group">
+ 			<label for="firstnameid">First name</label>
+ 			<input id="firstnameid" class="form-control"  type="text" value="" ng-model="pro_user['firstname']">
+ 		</div>
+ 		<div class="form-group">
+ 			<label for="lastnameid">Last name</label>
+ 			<input id="lastnameid" class="form-control"  type="text" value="" ng-model="pro_user['lastname']">
+ 		</div>
+ 		<div class="form-group">
+ 			<label for="emailid">E-mail</label>
+ 			<input id="emailid" class="form-control"  type="text" value="" ng-model="pro_user['email']">
+ 		</div>
+
+ 		<button ng-click="profile_bare(pro_user)"  class="btn btn-success">Update profile</button>
+
+ 	</div>
+ </div>

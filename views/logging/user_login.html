@@ -1,0 +1,38 @@
+ <div class="row">
+ 	<div class="col-md-4">
+
+ 		<div ng-if="err_found" class="alert alert-danger">
+ 			<strong>Error!</strong> {{err_msg}}
+ 		</div>
+ 		<div ng-show="intro_type" class="alert alert-danger alert-dismissible" role="alert">
+ 			<button type="button" class="close" ng-click="intro_type=''" data-dismiss="alert" aria-label="Close">
+ 				<span aria-hidden="true">&times;</span>
+ 			</button>
+ 			<span ng-if="intro_type == 'login_required'">
+ 				You must be logged in to access this page
+ 			</span>
+ 			<span ng-if="intro_type == 'webadmin_required'">
+ 				You must web-admin to access this page
+ 			</span>
+ 		</div>
+
+ 		<div class="form-group">
+ 			<label for="login_name">Name</label>
+ 			<input if="login_name" class="form-control" name="Username" type="text" value="" ng-model="login_user['user']">
+ 		</div>
+ 		<div class="form-group">
+ 			<label for="login_name">Password</label>
+ 			<input class="form-control" name="Username" type="password" value="" ng-model="login_user['passwd']">
+ 		</div>
+
+ 		<div class="checkbox">
+ 			<label for="remembermeid">
+ 				<input type="checkbox" id="remembermeid" name="rememberme" value="on" ng-model="login_user['rememberme']"> 
+ 				Remember me (for 30 days)
+ 			</label>
+ 		</div>
+
+ 		<button ng-click="login_bare(login_user, redirect_page)" class="btn btn-success">Login</button>
+
+ 	</div>
+ </div>

@@ -1,0 +1,63 @@
+<div class="row">
+	<div class="col-md-4">
+
+		<h2>Register</h2>
+
+		<div ng-if="err_found" class="alert alert-danger">
+			<!-- <a href="#" class="close" data-dismiss="alert">&times;</a> -->
+			<strong>Error!</strong> {{err_msg}}
+		</div>
+
+		<form name="rf" class="css-form" novalidate>
+			<div class="form-group">
+				<label for="usernameid">Username</label>
+				<input id="usernameid" class="form-control" name="username" type="text" ng-model="reg_user['username']"
+				ng-pattern="/.{4,}/" 
+				ng-remote-validate='{{main_url+"/logging/check_username_exists"}}' 
+				ng-remote-throttle="550" ng-trim=false>
+				<div style="color:red" ng-show="rf.username.$dirty && rf.username.$invalid">
+					<span ng-show="rf.username.$error.ngRemoteValidate">The username name already exists on the database!</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="firstnameid">First name</label>
+				<input id="firstnameid" class="form-control"  type="text" value="" ng-model="reg_user['firstname']">
+			</div>
+			<div class="form-group">
+				<label for="lastnameid">Last name</label>
+				<input id="lastnameid" class="form-control"  type="text" value="" ng-model="reg_user['lastname']">
+			</div>
+			<div class="form-group">
+				<label for="emailid">E-mail</label>
+				<input id="emailid" class="form-control" name="email" type="text" value="" ng-model="reg_user['email']"
+				ng-pattern="EMAIL_REGEXP">
+				<div style="color:red" ng-show="rf.email.$dirty && rf.email.$invalid">
+					The mail is not valid
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="passwordid">Password</label>
+				<input id="passwordid" class="form-control" name="password" type="password" value="" ng-model="reg_user['passwd']"
+				ng-pattern="/.{4,}/">
+				<div style="color:red" ng-show="rf.password.$dirty && rf.password.$invalid">
+					The password must be at least 4 characters long
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="passwordconfirmid">Confirm password</label>
+				<input id="passwordconfirmid" class="form-control" type="password" value="" ng-model="reg_user['passwd_confirm']">
+				<div ng-if="reg_user['passwd'] != reg_user['passwd_confirm']" style="color:red">
+					Passwords do not match!
+				</div>
+			</div>
+
+			<button ng-if="rf.$dirty && rf.$valid" ng-click="register_bare(reg_user)" class="btn btn-success"> 
+				Register
+			</button>
+			<button ng-if="!rf.$valid" class="btn btn-danger"> 
+				Fill in the form correctly to register
+			</button>
+
+		</form>
+	</div>
+</div>

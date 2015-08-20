@@ -1,0 +1,21 @@
+<? extend 'routes/index_layout.html' ?>
+
+<? block body ?>
+
+<div id="page-wrapper-without-sidebar">
+
+	<div class="row">
+		<div class="col-md-12">
+			<!-- Angular ng-view is filled with partial views as specified in angular routes -->
+			<div ui-view></div>
+		</div> 
+	</div>
+
+	<hr class="faded">
+
+	<? include 'routes/footer.html' ?>
+
+</div>
+
+<? end ?>
+

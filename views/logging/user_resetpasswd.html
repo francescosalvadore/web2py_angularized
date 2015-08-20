@@ -1,0 +1,24 @@
+<div class="row">
+ 	<div class="col-md-4">
+
+        <h2>Reset password</h2>
+
+ 		<div ng-if="err_found" class="alert alert-danger">
+ 			<strong>Error!</strong> {{err_msg}}
+ 		</div>
+
+ 	
+ 		<div class="form-group">
+ 			<label for="passwordid">Password</label>
+ 			<input id="passwordid" class="form-control"  type="password" value="" ng-model="rp_user['passwd']">
+ 		</div>
+ 		<div class="form-group">
+ 			<label for="passwordconfirmid">Confirm password</label>
+ 			<input id="passwordconfirmid" class="form-control" type="password" value="" ng-model="rp_user['passwd_confirm']">
+ 			<span ng-if="rp_user['passwd'] != rp_user['passwd_confirm']">Passwords do not match!</span>
+ 		</div>
+ 		
+ 		<button ng-click="resetpasswd_bare(rp_user)"  class="btn btn-success">Reset password</button>
+
+ 	</div>
+ </div>

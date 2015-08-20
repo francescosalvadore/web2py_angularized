@@ -1,0 +1,60 @@
+<div class="row" >
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-4">
+				<div ng-if="err_found" class="alert alert-danger">
+					<strong>Error!</strong> {{err_msg}}
+				</div>
+				<div ng-show="intro_type" class="alert alert-success alert-dismissible" role="alert">
+					<button type="button" class="close" ng-click="intro_type=''" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<span ng-if="intro_type == 'logged'">
+						Welcome <strong> {{user.username}} </strong>
+					</span>
+					<span ng-if="intro_type == 'loggedout'">
+						Logged out
+					</span>
+					<span ng-if="intro_type == 'registered'">
+						Registration  completed.
+						<a ui-sref="logging.user_login">Login</a> to start as logged user.
+					</span>
+					<span ng-if="intro_type == 'registered_to_verify'">
+						Registration  to be verified. Check your mail
+					</span>
+					<span ng-if="intro_type == 'registered_to_approve'">
+						Registration  to be approved. Keep in touch.
+					</span>
+					<span ng-if="intro_type == 'profileupdated'">
+						Profile successfully updated
+					</span>
+					<span ng-if="intro_type == 'passwdchanged'">
+						Password successfully changed
+					</span>
+					<span ng-if="intro_type == 'reqresetpasswd'">
+						Password reset mail sent
+					</span>
+					<span ng-if="intro_type == 'resetpasswd'">
+						Password reset completed
+					</span>
+					<span ng-if="intro_type == 'verify'">
+						Mail verified.
+						<a ui-sref="logging.user_login">Login</a> to start as logged user.
+					</span>
+					<span ng-if="intro_type == 'verify_to_approve'">
+						Mail verified. Registration to be approved
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<h2>Welcome</h2>
+
+		<div class="row">
+			<div ui-view="welcome_view_1"></div>
+			<div ui-view="welcome_view_2"></div>
+		</div>
+
+	</div> 
+</div> 
+

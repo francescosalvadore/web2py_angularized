@@ -1,0 +1,279 @@
+/*----------------------------------------------*/
+/* SECTION: body                                */
+/*----------------------------------------------*/
+/* Body to use the fixed navbar */
+body {
+    background-color: white;
+    padding-top: 50px; 
+}
+
+#page-wrapper-without-sidebar {
+    padding: 0 15px;
+    min-height: 400px;
+    background-color: #fff;
+}
+
+/*----------------------------------------------*/
+/* SECTION: fonts                               */
+/*----------------------------------------------*/
+@font-face {
+    font-family: myTitleFont;
+    src: url(../fonts/Quikhand.ttf);
+}
+
+@font-face {
+    font-family: bebasFont;
+    src: url(../fonts/octopus_rounded_300-webfont.woff);
+}
+
+@font-face {
+    font-family: greekAthenaFont;
+    src: url(../fonts/newathu405.woff);
+}
+
+.greek_font {
+    font-family: greekAthenaFont;
+    font-size: 2em;
+    color: #428bca;
+}
+
+.font-title {
+    font-family: bebasFont;  
+    font-size: 40px;
+    font-size: calc(160% + 1.2vw);
+    font-weight: bold;
+    color: #DDD;
+}
+
+/*----------------------------------------------*/
+/*  SECTION: navbar   */
+/*----------------------------------------------*/
+.myheader-bar {
+    background-color: #000; 
+}
+.admin_p    {
+    background-color: white; 
+    border: 2px solid #c33; margin-top: 12px; padding: 2px;
+}
+.logged_p {
+    background-color: white; 
+    border: 2px solid #33c; margin-top: 12px; padding: 2px;
+}
+/*  Icons awesome fonts  */
+.myfa-menu
+{
+    color: #DDD;
+}
+.myfa-menu-admin
+{
+    color: #b22;
+}
+.myfa-menu-logged
+{
+    color: #b22;
+    color: #226baa;
+}
+
+/* Sub-tab Buttons  */
+.rn_main_col {
+   margin:0.2em;
+   padding:0;
+}
+
+.rn_main_btn {
+   white-space: normal;
+   min-height: 120px;
+   font-size: 14px;
+   margin:0em;
+   padding:0em;
+}
+
+.pointer
+{
+    cursor: pointer;
+    margin: 15px;
+}
+.dropdown-menu 
+{
+    /*      width: 300px; */
+}
+
+.menu_link
+{
+    color: #88C;
+    color: #DDD;
+    font-weight: bold;
+}
+.menu_link_admin
+{
+    color: #e55;
+    font-weight: bold;
+}
+
+.menu_link_logged
+{
+    color: #e55;
+    color: #226baa;
+    font-weight: bold;
+}
+
+/* this class is automatically added from drop-down menu when opened */
+.open 
+{
+    color: #228;
+    font-weight: bold;
+}
+
+.admin_p
+{
+    background-color: white; 
+    border: 2px solid #c33; margin-top: 12px; padding: 2px;
+}
+.logged_p
+{
+    background-color: white; 
+    border: 2px solid #33c; margin-top: 12px; padding: 2px;
+}
+
+
+/* Navbar menu moved to the bottom */
+.navbar-collapse {
+    padding: 6px 0px -6px 0px ;
+}
+/* Make the TurBase logo in the top-left header more vertically centered */
+.navbar-brand {
+    margin: 6px 0px -6px 0px ;
+}
+
+
+/*----------------------------------------------*/
+/* SECTION: footer */
+/*----------------------------------------------*/
+.footer {
+    padding: 10px 20px 10px 20px;
+    background: #37a;
+    color: white;
+    font-weight: bold;
+}
+
+hr.faded {
+    clear: both; 
+    float: none; 
+    width: 100%; 
+    height: 1px;
+    margin: 1.4em 0;
+    border: none; 
+    background: #ddd;
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        right bottom,
+        color-stop(0, rgb(255,255,255)),
+        color-stop(0.1, rgb(221,221,221)),
+        color-stop(0.9, rgb(221,221,221)),
+        color-stop(1, rgb(255,255,255))
+        );
+    background-image: -moz-linear-gradient(
+        left center,
+        rgb(255,255,255) 0%,
+        rgb(221,221,221) 10%,
+        rgb(221,221,221) 90%,
+        rgb(255,255,255) 100%
+        );
+}
+
+/*----------------------------------------------*/
+/* SECTION: pages; */
+/*----------------------------------------------*/
+.viewheader {
+    margin: 0px 0px 10px 0px;
+}
+
+/*----------------------------------------------*/
+/* SECTION: spinners and modals; */
+/*----------------------------------------------*/
+.spinner-tile {
+    display: table;
+    width: 100%;
+    margin-bottom: 30%;
+}
+
+.card {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 30%;
+    padding-left: 20%;
+/* height: 170px; */
+}
+
+/* modal */
+.loading_square {
+  width: 8px;
+  height: 30px;
+  background: #5cb85c;
+  border-radius: 10px;
+  display: block;
+  /*margin:10px;*/
+  -webkit-animation: turn 2.5s ease infinite;
+  animation: turn 2.5s ease infinite;
+}
+.loading_top {
+  position: absolute;
+  left: 40%;
+  top: 50%;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.loading_bottom {
+  position: absolute;
+  left: 40%;
+  top: 50%;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+.loading_left {
+  position: absolute;
+  left: 40%;
+  top: 50%;
+}
+.loading_right {
+  position: absolute;
+  left: 40%;
+  top: 50%;
+  -webkit-transform: rotate(-180deg);
+  transform: rotate(-180deg);
+}
+@-webkit-keyframes turn {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateX(400%) translateY(100%) rotate(90deg);
+  }
+  100% {
+    transform: translateX(0) translateY(0) rotate(0);
+  }
+}
+@keyframes turn {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0);
+  }
+  70% {
+    transform: translateX(400%) translateY(100%) rotate(90deg);
+  }
+  100% {
+    transform: translateX(0) translateY(0) rotate(0);
+  }
+}
+
+.app-modal-window .modal-content {
+  margin-left: 33%;
+  margin-top: 20%;
+  width: 25em;
+  height: 21em;
+}
+.modal-body {
+  margin-left: 2.5em;
+  margin-top: 4em;
+}

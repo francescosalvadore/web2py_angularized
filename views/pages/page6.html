@@ -1,0 +1,30 @@
+<div ng-if="!user.web_admin" class="row">
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="alert alert-danger alert-dismissible" role="alert">
+					<button type="button" class="close" ng-click="intro_type=''" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<span>
+						You must be logged in as web admin to access this page.<br/>
+						<a ui-sref="logging.user_login({redirect_page: 'pages.page6'})">Login</a>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-if="user.web_admin" class="row">
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-4">
+				<h2>Page 6</h2>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
