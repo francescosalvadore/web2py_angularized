@@ -1,5 +1,10 @@
 Basic integration of web2py and AngularJS. Not well tested but it seems to work...
 
+Main features:
+- web2py authentication made REST
+- single-page app 
+- integration with ui-router
+
 To install (Linux):
 (1) Download and unzip web2py 
     wget http://www.web2py.com/examples/static/web2py_src.zip
@@ -19,8 +24,12 @@ To install (Linux):
     You can access the website from http://localhost:8001/web2py_angularized
 
 (5) Now you can register the first user and make it web_admin
-    - From the website (http://localhost:8001/web2py_angularized) register the user
-    - From the appadmin interface (http://localhost:8001/web2py_angularized/appadmin/index)
-      using the 'secretpass'
-      * under db.auth_group, create a group named  'web_admin'
-      * under db.auth_membership, add the user as a member of the web_admin group
+    - From the website 
+          (http://localhost:8001/web2py_angularized): 
+          register the user
+    - From the appadmin interface 
+          (http://localhost:8001/web2py_angularized/appadmin/index)
+          using the 'secretpass'
+              * under db.auth_group, create a group named  'web_admin'
+              * under db.auth_membership, add the user as a 
+                member of the web_admin group
