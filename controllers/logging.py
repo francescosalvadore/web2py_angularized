@@ -27,6 +27,10 @@ def api_user():
         doc = GET.func_doc
         return_dict = dict(doc=doc)
 
+        # what does request contain?
+        # for rr,vv in request.iteritems():
+        #     return_dict[rr] = str(vv) 
+        # return_dict["try"] = "http://"+str(request.env.http_host)+"/"+str(request.application)
 
         if not auth.is_logged_in():
             logger.debug("not logged strange")
@@ -164,6 +168,7 @@ def api_register_bare():
      
         if auth.settings.registration_requires_verification: 
             table_user.registration_key.default = verify_key = web2py_uuid()
+            main_url = "http://"+str(request.env.http_host)+"/"+str(request.application)
             verify_msg = "Welcome "+user_dict['username']+" click on the link "+main_url+"/routes/#/logging/user_verify?key="+verify_key+" to verify your mail"
             logger.debug("registration requires mail verification")
             if not auth.settings.mailer or \
@@ -402,6 +407,7 @@ def api_reqresetpasswd_bare():
         # d = dict(user)
         # d.update(dict(key=reset_password_key, link=link))
 
+        main_url = "http://"+str(request.env.http_host)+"/"+str(request.application)
         reset_msg = "Click on the link "+main_url+"/routes/#/logging/user_resetpasswd?key="+reset_password_key+" to reset your password"
         if auth.settings.mailer and auth.settings.mailer.send(
             to=user_mail,

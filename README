@@ -13,11 +13,14 @@ To install (Linux):
     cd web2py/applications/web2py_angularized/static
     bower install
 
-(4) Edit the site url in Python (db.py) and javascript (controller.js) files
-    cd web2py/applications/web2py_angularized
-    vi static/js/myangularjs/controllers.js  ==> edit the line with the url localhost:8001
-    vi models/db.py                          ==> edit the line with the url localhost:8001 
-
-(5) Start web2py and try!
+(4) You are ready to start web2py and try
     cd web2py
-    python web2py.py
+    python web2py.py -a 'secretpass' -i 127.0.0.1 -p 8001
+    You can access the website from http://localhost:8001/web2py_angularized
+
+(5) Now you can register the first user and make it web_admin
+    - From the website (http://localhost:8001/web2py_angularized) register the user
+    - From the appadmin interface (http://localhost:8001/web2py_angularized/appadmin/index)
+      using the 'secretpass'
+      * under db.auth_group, create a group named  'web_admin'
+      * under db.auth_membership, add the user as a member of the web_admin group

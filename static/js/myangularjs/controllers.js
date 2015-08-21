@@ -21,10 +21,12 @@ window.siteApp = angular.module('siteApp', [
 
 // Build constant services starting from a config_data dictionary to extract configuration parameter from controllers
 // config_data has double nesting because so I can group parameters
+var main_url = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname.split( '/' )[1]
+// window.location.pathname = "example/index.html"
 var config_data = {
     'siteConfig': {
         'main_title': 'web2py angularized',
-        'main_url': 'http://localhost:8001/web2py_angularized'
+        'main_url': main_url //'http://localhost:8001/web2py_angularized'
     }
 }
 angular.forEach(config_data,function(key,value) {

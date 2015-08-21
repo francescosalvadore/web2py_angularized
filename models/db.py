@@ -5,8 +5,8 @@
 ## File is released under public domain and you can use without limitations
 #########################################################################
 
-main_title = "web2py angularized"
-main_url = "http://localhost:8001/web2py_angularized"
+# main_title = "web2py angularized"
+# main_url = "http://localhost:8001/web2py_angularized"
 
 import logging, logging.handlers
 
@@ -94,12 +94,12 @@ auth.settings.expiration = 3600*4*24 # four days
 auth.settings.long_expiration = 3600*24*30 # one month
 ## configure email
 mail = auth.settings.mailer
-mail.settings.server = '127.0.0.1:25' #nfsalvado220477.int.caspur.it' #'logging' if request.is_local else 'smtp.gmail.com:587'
-mail.settings.sender = 'test-site-euhit@cineca.it'
+mail.settings.server = '127.0.0.1:25' # 'logging' if request.is_local else 'smtp.gmail.com:587'
+mail.settings.sender = 'you@gmail.com'
 mail.settings.login = None # 'username:password'
 
 ## configure auth policy
-auth.settings.registration_requires_verification = True
+auth.settings.registration_requires_verification = False
 auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = True
 
