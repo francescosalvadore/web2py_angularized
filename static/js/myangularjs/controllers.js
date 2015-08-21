@@ -21,12 +21,10 @@ window.siteApp = angular.module('siteApp', [
 
 // Build constant services starting from a config_data dictionary to extract configuration parameter from controllers
 // config_data has double nesting because so I can group parameters
-var main_url = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname.split( '/' )[1]
-// window.location.pathname = "example/index.html"
 var config_data = {
     'siteConfig': {
         'main_title': 'web2py angularized',
-        'main_url': main_url //'http://localhost:8001/web2py_angularized'
+        'main_url': 'http://localhost:8001/web2py_angularized'
     }
 }
 angular.forEach(config_data,function(key,value) {
@@ -389,9 +387,11 @@ siteApp.controller('logging_ctrl',
         // Profile edit
         $scope.pro_user = {};
         $scope.pro_user['username'] = resolve_user['username'];
+        $scope.pro_user['email'] = resolve_user['email'];
         $scope.pro_user['firstname'] = resolve_user['firstname'];
         $scope.pro_user['lastname'] = resolve_user['lastname'];
-        $scope.pro_user['email'] = resolve_user['email'];
+        $scope.pro_user['passphrase'] = resolve_user['passphrase'];
+
 
         $scope.profile_bare = function(pro_user) {
             var resource_url = siteConfig.main_url + "/logging/api_profile_bare"
@@ -746,11 +746,12 @@ siteApp.factory('logging_factory',
                             user_dict.firstname         = logged_user['firstname'];
                             user_dict.lastname          = logged_user['lastname'];
                             user_dict.email             = logged_user['email'];
+                            user_dict.passphrase        = logged_user['passphrase'];
                             user_dict.id                = logged_user['id'];
                             user_dict.groups            = logged_user['groups'];
                             user_dict.can_create        = logged_user['can_create'];
                             user_dict.web_admin         = logged_user['web_admin'];
-                            $log.debug("logged_user: ",logged_user)
+                            console.log("logged_user:AAAAAAA ",logged_user)
 
                             // The concept of allower_groups is useful for web_admin since it is 
                             // has all the groups allowed even if it does not belong to (e.g. when editing

@@ -1,4 +1,5 @@
-Basic integration of web2py and AngularJS. Not well tested but it seems to work...
+Basic integration of web2py and AngularJS. 
+Not well tested but it seems to work...
 
 Main features:
 - web2py authentication made REST

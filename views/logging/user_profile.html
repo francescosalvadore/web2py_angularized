@@ -27,8 +27,17 @@
 
  		<div class="form-group">
  			<label for="usernameid">Username</label>
- 			<span id="usernameid" class="form-control" type="text" value="" ng-bind="pro_user['username']" style="background-color:#ccf;"></span>
+ 			<span id="usernameid" class="form-control" type="text" value="" ng-bind="pro_user['username']" style="background-color:#bbb;"></span>
  		</div>
+ 		<div class="form-group">
+ 			<label for="emailid">E-mail</label>
+ 			<span id="emailid" class="form-control"  type="text" value="" ng-bind="pro_user['email']" style="background-color:#bbb;"></span>
+ 		</div>
+ 		<div ng-if="pro_user['passphrase']" class="form-group">
+ 			<label for="passphraseid">Passphrase</label>
+ 			<span id="passphraseid" class="form-control"  type="text" value="" ng-bind="pro_user['passphrase']" style="background-color:#bbb;"></span>
+ 		</div>
+
  		<div class="form-group">
  			<label for="firstnameid">First name</label>
  			<input id="firstnameid" class="form-control"  type="text" value="" ng-model="pro_user['firstname']">
@@ -37,11 +46,7 @@
  			<label for="lastnameid">Last name</label>
  			<input id="lastnameid" class="form-control"  type="text" value="" ng-model="pro_user['lastname']">
  		</div>
- 		<div class="form-group">
- 			<label for="emailid">E-mail</label>
- 			<input id="emailid" class="form-control"  type="text" value="" ng-model="pro_user['email']">
- 		</div>
-
+ 		
  		<button ng-click="profile_bare(pro_user)"  class="btn btn-success">Update profile</button>
 
  	</div>

@@ -42,6 +42,11 @@ def api_user():
         email = auth.user.email
         user_id = auth.user.id
 
+        passphrase = ''
+        if user_passphrase_active:
+            table_user = auth.settings.table_user 
+            passphrase = auth.db(table_user['username'] == user_name).select().first().passphrase
+
         logger.info("Logged user: "+str(auth.user))
 
         user_groups = get_groups()
@@ -53,6 +58,7 @@ def api_user():
                                          "firstname"  : first_name,
                                          "lastname"   : last_name,
                                          "email"      : email,
+                                         "passphrase" : passphrase,
                                          "id"         : user_id,
                                          "groups"     : user_groups,
                                          "can_create" : user_groups['can_create'],
@@ -185,16 +191,18 @@ def api_register_bare():
 
         logger.debug("User registered:  "+str(user))        
         
-#       improve random string following http://stackoverflow.com/questions/7479442/high-quality-simple-random-password-generator
-#       alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-#       os.urandom()
-#       instead of http://stackoverflow.com/questions/2257441/random-string-generation-with-upper-case-letters-and-digits-in-python
-        db.auth_user.passphrase.writable = True
-        import random, string
-        pf = ''.join(random.SystemRandom().choice(string.ascii_lowercase + string.digits) for _ in range(16))
-        db(db.auth_user.username == user_dict['username']).update(passphrase=pf)
-        db.auth_user.passphrase.writable = False
-        # print "db.auth_user.passphrase.writable :",db.auth_user.passphrase.writable
+        if user_passphrase_active:
+#           improve random string following http://stackoverflow.com/questions/7479442/high-quality-simple-random-password-generator
+#           alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+#           os.urandom()
+#           instead of http://stackoverflow.com/questions/2257441/random-string-generation-with-upper-case-letters-and-digits-in-python
+            db.auth_user.passphrase.writable = True
+            import random, string
+            pf = ''.join(random.SystemRandom().choice(string.ascii_lowercase + string.digits) for _ in range(16))
+            db(db.auth_user.username == user_dict['username']).update(passphrase=pf)
+            db.auth_user.passphrase.writable = False
+            # print "db.auth_user.passphrase.writable :",db.auth_user.passphrase.writable
+        
         db.commit()
 
         user_db = auth.db(table_user['username'] == reg_user['username']).select().first()
@@ -319,11 +327,12 @@ def api_profile_bare():
 
         table_user = auth.settings.table_user 
         user = auth.db(table_user['username'] == pro_user['username']) #.select().first()
-        user.update(first_name = pro_user['firstname'], last_name = pro_user['lastname'], email = pro_user['email'], registration_key= '') 
+        # Note that the mail is unchanged
+        user.update(first_name = pro_user['firstname'], last_name = pro_user['lastname'], registration_key= '') 
 
         # I also need to update the session!
         # http://stackoverflow.com/questions/13059557/web2py-auth-user-object-returns-obsolete-data
-        auth.user.update(first_name = pro_user['firstname'], last_name = pro_user['lastname'], email = pro_user['email'], registration_key= '')
+        auth.user.update(first_name = pro_user['firstname'], last_name = pro_user['lastname'], registration_key= '')
 
         return gluon.contrib.simplejson.dumps(return_dict)
 

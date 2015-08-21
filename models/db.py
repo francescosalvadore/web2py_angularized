@@ -81,10 +81,13 @@ auth = Auth(db)
 service = Service()
 plugins = PluginManager()
 
-auth.settings.extra_fields['auth_user']= [
-        Field('passphrase',writable=False)
-        #, Field('username',writable=False)
-        ]
+user_passphrase_active = True
+
+if user_passphrase_active:
+    auth.settings.extra_fields['auth_user']= [
+            Field('passphrase',writable=False)
+            #, Field('username',writable=False)
+            ]
 
 ## create all tables needed by auth if not custom tables
 #db.auth_user.drop()
@@ -102,6 +105,7 @@ mail.settings.login = None # 'username:password'
 auth.settings.registration_requires_verification = False
 auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = True
+
 
 ## if you need to use OpenID, Facebook, MySpace, Twitter, Linkedin, etc.
 ## register with janrain.com, write your domain:api_key in private/janrain.key
