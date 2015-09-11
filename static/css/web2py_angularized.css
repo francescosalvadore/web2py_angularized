@@ -40,7 +40,7 @@ body {
 .font-title {
     font-family: bebasFont;  
     font-size: 40px;
-    font-size: calc(160% + 1.2vw);
+    font-size: calc(120% + 0.6vw);
     font-weight: bold;
     color: #DDD;
 }

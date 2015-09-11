@@ -28,7 +28,25 @@ def api_simple_page_data():
         if auth.is_logged_in():
             return_dict['user'] = auth.user.username
 
-        slowerize_fun()
+        import datetime
+        limit = request.now - datetime.timedelta(minutes=30)
+        query = db.auth_event.time_stamp > limit
+        query &= db.auth_event.description.contains('Logged-')
+        events = db(query).select(db.auth_event.user_id, db.auth_event.description,
+            orderby=db.auth_event.user_id|db.auth_event.time_stamp)
+        users = []
+        for i in range(len(events)):
+            last_event = ((i == len(events) - 1) or
+                           events[i+1].user_id != events[i].user_id)
+            if last_event and 'Logged-in' in events[i].description:
+                users.append(events[i].user_id)
+        logged_in_users = db(db.auth_user.id.belongs(users)).select()
+
+        return_dict['logged_users'] = []
+        for lu in logged_in_users:
+            return_dict['logged_users'].append(str(lu.username))
+
+        # slowerize_fun()
 
         return gluon.contrib.simplejson.dumps(return_dict)
 

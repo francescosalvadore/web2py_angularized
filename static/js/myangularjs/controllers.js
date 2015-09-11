@@ -601,6 +601,7 @@ siteApp.controller('page1tab1_ctrl',
         var modalinstance_logging = transitions_factory.activate_loading("Getting data...");
         simple_page_data.get_simple_data().then(
             function(data){
+                console.log("data: ",data)
                 $scope.page1tab1_ctrl.simple_data=data;
                 $scope.page1tab1_ctrl.ready = true; 
                 transitions_factory.deactivate_loading(modalinstance_logging);
