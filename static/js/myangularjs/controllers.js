@@ -21,10 +21,11 @@ window.siteApp = angular.module('siteApp', [
 
 // Build constant services starting from a config_data dictionary to extract configuration parameter from controllers
 // config_data has double nesting because so I can group parameters
+var main_url = window.location.origin + '/' + window.location.pathname.split('/')[1];
 var config_data = {
     'siteConfig': {
         'main_title': 'web2py angularized',
-        'main_url': 'http://localhost:8001/web2py_angularized'
+        'main_url': main_url
     }
 }
 angular.forEach(config_data,function(key,value) {
@@ -280,7 +281,8 @@ siteApp.controller('logging_ctrl',
 
         // Title of the document (e.g., for the navbar title)
         $scope.main_title = siteConfig.main_title;
-        $scope.main_url = siteConfig.main_url;
+        $scope.main_url = window.location.href;
+        console.log("main_url: ",$scope.main_url);
 
         // Content of pages (to be inherited from sub-routes)
         $scope.page_content = {}
