@@ -281,7 +281,7 @@ siteApp.controller('logging_ctrl',
 
         // Title of the document (e.g., for the navbar title)
         $scope.main_title = siteConfig.main_title;
-        $scope.main_url = window.location.href;
+        $scope.main_url = siteConfig.main_url;
         console.log("main_url: ",$scope.main_url);
 
         // Content of pages (to be inherited from sub-routes)
