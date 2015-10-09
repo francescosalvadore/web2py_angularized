@@ -106,7 +106,7 @@ def api_login_bare():
             return_dict['logged_user']['name']  = user.username
             return_dict['logged_user']['id']  = user.id
             logger.debug("User logged:  "+str(user))
-            auth.log_event(auth.messages.login_log % auth.user) 
+#            auth.log_event(auth.messages.login_log % auth.user) 
         else:
             return_dict['logged_user'] = False
 
@@ -123,8 +123,8 @@ def api_logout_bare():
         auth.environment.session.auth = None           
         auth.environment.session.flash = auth.messages.logged_out 
 
-        if auth.user: 
-            auth.log_event(auth.messages.logout_log % auth.user) 
+#        if auth.user: 
+#            auth.log_event(auth.messages.logout_log % auth.user) 
 
         return_dict = dict(doc=doc)
         
