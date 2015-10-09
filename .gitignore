@@ -8,6 +8,6 @@ progress.log
 sessions/
 uploads/
 static/bower_components
-__init__.py
+/__init__.py
 __init__.pyc
 progress.log
