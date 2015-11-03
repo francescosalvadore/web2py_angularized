@@ -134,7 +134,7 @@ $stateProvider
 .state('logging.user_login', {
     url: '/user_login',
     templateUrl: 'user_login.html',
-    params : {intro_type: '', redirect_page: ''},
+    params : {intro_type: '', redirect_page: '', redirect_params: ''},
     controller: 'user_login_ctrl'
 })
 
@@ -288,11 +288,7 @@ siteApp.controller('logging_ctrl',
         $scope.page_content = {}
 
         // User info are taken from resolve factory. Now assigned to scope variables.
-        $scope.user = {}
-        $scope.user.logged = resolve_user.logged;
-        $scope.user.web_admin = resolve_user.web_admin;
-        $scope.user.username = resolve_user.username;
-        $scope.user.user_dict = resolve_user;
+        $scope.user = resolve_user;
         $log.debug("logging user dict: ",$scope.user)
 
         // TODO: if the user keeps the page opened for a long time, the server auth expiration time
@@ -306,7 +302,10 @@ siteApp.controller('logging_ctrl',
         // - Beware: the $scope.user in not refreshed each time but if the user_id is still the same,
         //   $scope.user is the same
         var auth_refresh_seconds = 500; 
-        var promise = $interval(function() { logging_factory.get_user($scope.user)}, 1000*auth_refresh_seconds);
+        var promise = $interval(function() { 
+            logging_factory.get_user($scope.user)
+            $log.debug(["logging user dict: ",$scope.user])
+        }, 1000*auth_refresh_seconds);
 
         // The next functions are put here and not in separate controllers because
         // so I can call the functions from each page (since each page is descendant of logging state)
@@ -315,7 +314,7 @@ siteApp.controller('logging_ctrl',
         $scope.login_user = {}
         $scope.login_user.rememberme = false;
 
-        $scope.login_bare = function(login_user, redirect_page) {
+        $scope.login_bare = function(login_user, redirect_page, redirect_params) {
             var resource_url = siteConfig.main_url + "/logging/api_login_bare"
             var user_res = $resource(resource_url,
                 {     },
@@ -327,7 +326,7 @@ siteApp.controller('logging_ctrl',
                         // reload: true is needed to execute the logging controller (get the user dict on scope)
                         if (redirect_page) { // !== undefined) {
                             $log.debug("going to the specified page: ",redirect_page)
-                            $state.go(redirect_page,{"intro_type":"logged"},{'reload':true})
+                            $state.go(redirect_page, redirect_params, {'reload':true})
                         } else {
                             $log.debug("going to the specified page: ",redirect_page)
                             $state.go("logging.welcome_logged",{"intro_type":"logged"},{'reload':true})
@@ -467,6 +466,7 @@ siteApp.controller('user_login_ctrl',
     function($scope, $stateParams, $log ) {
         $scope.intro_type = $stateParams.intro_type;
         $scope.redirect_page = $stateParams.redirect_page;
+        $scope.redirect_params = $stateParams.redirect_params;
     }]);
 
 siteApp.controller('user_manageapprovals_ctrl',
