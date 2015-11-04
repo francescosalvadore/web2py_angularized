@@ -84,10 +84,10 @@ $stateProvider
     templateUrl: 'logging.html',
     controller: 'logging_ctrl',
     resolve: {
-        resolve_user: function(logging_factory) {
+        resolve_user: ['logging_factory', function(logging_factory) {
             var user_dict = {};
             return logging_factory.get_user(user_dict);
-        }
+        }]
     },
 })
 
