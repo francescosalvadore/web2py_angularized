@@ -179,9 +179,9 @@ $stateProvider
     url: '/user_manageapprovals',
     templateUrl: 'user_manageapprovals.html',
     resolve: {
-        pending_users: function(logging_factory) {
+        pending_users: ['logging_factory', function(logging_factory) {
             return logging_factory.get_pending_users();
-        }
+        }]
     },
     controller: 'user_manageapprovals_ctrl'
 })
