@@ -192,7 +192,7 @@ def api_register_bare():
             return_dict['to_verify'] = True
 
         # the next function also creates the user_groups
-        user = auth.get_or_create_user(user_dict)
+        user = auth.get_or_create_user(user_dict, login=False)
 
         logger.debug("User registered:  "+str(user))        
         
